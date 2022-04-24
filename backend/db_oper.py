@@ -1,12 +1,12 @@
 import json
 from review import Review
 
-DATABASE = './db/data.json'
+DATABASE = '../db/data.json'
 
 
 def get_data() -> list:
     """获取视频全部评论的信息"""
-    review  = Review()
+    review = Review()
     data = review.get_review_mails()
     return data
 
@@ -18,7 +18,7 @@ def open_database(datebase=DATABASE) -> list:
     return data
 
 
-def update_database(new_data:list, datebase=DATABASE) -> list:
+def update_database(new_data: list, datebase=DATABASE) -> list:
     """更新数据库"""
     with open(datebase, 'w', encoding='utf-8') as fp:
         json.dump(new_data, fp, ensure_ascii=False)
@@ -42,12 +42,12 @@ def update_user_data():
         print(f"\033[1;32m >>>>>>:用户数据更新成功,新增用户数 {add_num}:<<<<<< \033[0m")
 
 
-
-def new_sent_stamp(date:str) -> None:
+def new_sent_stamp(mail_list: list, date: str) -> None:
     """新增用户订阅记录"""
     data = open_database()
-    for item in data:
-        item["send_record"].append(date)
+    for user_mail in mail_list:
+        for item in data:
+            if item["mail_addr"] == user_mail:
+                item["send_record"].append(date)
     update_database(data)
     print(f"\033[1;32m >>>>>>: 新增用户订阅时间戳成功,日期: {date} :<<<<<< \033[0m")
-

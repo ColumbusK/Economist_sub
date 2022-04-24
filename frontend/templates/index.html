@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>经济学人邮箱订阅</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            margin-top: 20px;
+            height: 180px;
+            background-color: #E40A03;
+        }
+
+        header img {
+            display: block;
+            margin: 0 auto;
+            height: 100%;
+
+        }
+
+        section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px;
+            height: 300px;
+            background-color: lightgray;
+        }
+
+        .input {
+            float: left;
+            margin: 20px auto;
+            width: 600px;
+            height: 60px;
+        }
+
+        .input input {
+            float: left;
+            box-sizing: border-box;
+            padding-left: 10px;
+            width: 80%;
+            height: 100%;
+            font-size: 18px;
+            border: none;
+            outline: none;
+        }
+
+        .input input:focus {
+            border-bottom: 1px solid red;
+
+        }
+
+        .input button {
+            float: left;
+            width: 20%;
+            height: 100%;
+            border: none;
+            background-color: #E40A03;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 24px;
+            font-weight: 700;
+            color: snow;
+            opacity: .85;
+        }
+
+        .input button:hover {
+            opacity: 2;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="{{url_for('static', filename='./images/The_Economist_Logo.svg.png')}}" alt="">
+    </header>
+    <section>
+        <form action="" method="post">
+            <div class="input">
+                <input type="email" name="email" id="">
+                <button type="submit">订阅</button>
+            </div>
+        </form>
+    </section>
+    <footer></footer>
+</body>
+
+</html>
