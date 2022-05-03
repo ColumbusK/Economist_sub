@@ -1,16 +1,12 @@
-import datetime
 import time
 
 
-def get_preview_date(num: int) -> str:
-    """返回当前日期前num日的日期"""
-    year, month, day = time.strftime("%Y %m %d").split(" ")
-    if int(day) - num < 10:
-        day = int(day) - num
-        day = '0' + str(day)
-    date = '-'.join([year, month, day])
+def get_pre_date(num: int) -> str:
+    """获取前n日的日期字符串"""
+    timeStamp = time.time()
+    loss = num * 24 * 60 * 60
+    timeStamp -= loss
+    dateStamp = time.localtime(timeStamp)
+    date = time.strftime(r"%Y/%m/%d", dateStamp)
+    print(date)
     return date
-
-
-date = get_preview_date(1)
-print(date)
