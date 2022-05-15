@@ -8,13 +8,11 @@ recivers = [
     "1160387293@qq.com", "xuanfau@qq.com"
 ]
 
-pdf_path = r"F:\Nutstore\图书馆\报刊\The_economist\TE20220423.pdf"
+pdf_path = r"F:\Nutstore\图书馆\报刊\The_economist\TE20220514.pdf"
 
-date = time_stamp.get_preview_date(0)
+date = time_stamp.get_preview_date(1)
 
 mail_content = f'您好,新一期的经济学人{date}刊已送达,请查收! 享受阅读,祝您天天好心情!'
 
 for receiver in recivers:
     post.send_pdf_mail(receiver, pdf_path, mail_content=mail_content)
-
-

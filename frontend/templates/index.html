@@ -14,7 +14,7 @@
 
         header {
             margin-top: 20px;
-            height: 180px;
+            height: 25vh;
             background-color: #E40A03;
         }
 
@@ -30,7 +30,7 @@
             justify-content: center;
             align-items: center;
             margin-top: 10px;
-            height: 300px;
+            height: 45vh;
             background-color: lightgray;
         }
 
@@ -50,10 +50,11 @@
             font-size: 18px;
             border: none;
             outline: none;
+            border-bottom: 2px solid white
         }
 
         .input input:focus {
-            border-bottom: 1px solid red;
+            border-bottom: 2px solid red;
 
         }
 
@@ -68,10 +69,18 @@
             font-weight: 700;
             color: snow;
             opacity: .85;
+            cursor: pointer;
         }
 
         .input button:hover {
             opacity: 2;
+        }
+
+        footer {
+            margin-top: 10px;
+            width: 100%;
+            height: 20vh;
+            background-color: black;
         }
     </style>
 </head>
@@ -81,10 +90,10 @@
         <img src="{{url_for('static', filename='./images/The_Economist_Logo.svg.png')}}" alt="">
     </header>
     <section>
-        <form action="" method="post">
+        <form action="/add_email" method="post">
             <div class="input">
-                <input type="email" name="email" id="">
-                <button type="submit">订阅</button>
+                <label for="email"><input type="email" name="email" id="email" autocomplete="off">
+                    <button type="submit" title="订阅经济学人">订阅</button>
             </div>
         </form>
     </section>
