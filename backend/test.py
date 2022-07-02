@@ -1,17 +1,12 @@
-dic1 = {"a": 3}
-dic2 = {"b": 4}
+ls = dir(list)
+print(ls)
 
-print(dic1 == dic2)
+numbers = 1,3,4,4,55
+print(type(numbers))
 
+flt = 11.222
+string = "float: {1:=^20.2f}".format(flt, 22)
+string = f"float: {22:(^20.2f}"
+print(string)
 
-ls1 = [1,2,3]
-set1 = set(ls1)
-set2 = {2,3,4}
-
-for ele in set2:
-    set1.add(ele)
-
-print(set1)
-
-ls1.clear()
-print(ls1)
+print(help(list))

@@ -1,0 +1,7 @@
+This article was published as a part of the Data Science Blogathon.
+
+Introduction on Docker Image
+I created this flow diagram for you to get a simpler idea before deep diving into docker. 
+By looking at this diagram you can understand what is really happening while we are using docker. 
+After docker is installed I simply call the docker run command, docker is looking for the image in our local machine,
+ if it is installed, it runs that image, if not Docker search for the image from our docker hub (You will learn about docker hub in the following article). Once the image is found by docker it downloads the image to our local machine. 
