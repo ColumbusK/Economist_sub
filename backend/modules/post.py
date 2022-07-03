@@ -5,22 +5,43 @@ from email.mime.application import MIMEApplication
 from email.mime.multipart import MIMEMultipart
 import os
 import yagmail
+import random
 
+Mails = [
+    {
+        "mail": "zkzkao@foxmail.com",
+        "auth": "ptypudtvvhlecajj",
+        'smtp': "smtp.qq.com"
+    },
+    {
+        "mail": "2683747644@qq.com",
+        "auth": "rewhrnednwjjebig",
+        'smtp': "smtp.qq.com"
+    },
+    {
+        "mail": "columbusknight@163.com",
+        "auth": "IMZSDHKHDACEZDSY",
+        'smtp': "smtp.163.com"
+    },
+    {
+        "mail": "ColumbusK@163.com",
+        "auth": "EJXNFEVIVTGFHEFR",
+        'smtp': "smtp.163.com"
+    },
+]
 
 # sender_qq为发件人的qq号码
 mail_163 = 'columbusknight@163.com'
 mail_163_2 = 'ColumbusK@163.com'
 mail_qq = 'zkzkao@foxmail.com'
-mail_g = 'zkangzhi4@gmail.com'
 # pwd为qq邮箱的授权码
 pwd_163 = 'IMZSDHKHDACEZDSY'
 pwd_163_2 = 'EJXNFEVIVTGFHEFR'
 pwd_qq = 'ptypudtvvhlecajj'
-pwd_g = 'zkz.googl1258'
+
 
 smtp_163 = 'smtp.163.com'
 smtp_qq = 'smtp.qq.com'
-smtp_g = 'smtp.gmail.com'
 # 收件人邮箱receiver
 receiver = 'zkangzhi4@gmail.com'
 # 邮件的正文内容
@@ -38,6 +59,7 @@ class Poster():
         self.smtp = smtp_qq
         self.pdf_apart = None
         self.pdf_path = pdf_path
+        self.smtp_service = None
 
     def pdf_init(self):
         pdf_path = self.pdf_path
@@ -49,11 +71,17 @@ class Poster():
             self.pdf_apart = pdfApart
             print(">>>>>>>> PDF初始化成功 <<<<<<<<")
 
+    def load_smtp(self):
+        """选择smtp服务商"""
+        self.smtp_service = random.choice(Mails)
+        print("发件邮箱>>>:", self.smtp_service['mail'])
+
     def send_pdf_mail(self, receiver: str, mail_content: str):
-        # qq邮箱smtp服务器
-        host_server = self.smtp
-        pwd = self.pwd
-        sender_mail = self.mail
+        self.load_smtp()
+        # 邮箱smtp服务器
+        host_server = self.smtp_service['smtp']
+        pwd = self.smtp_service['auth']
+        sender_mail = self.smtp_service['mail']
         mail_title = self.mail_title
         ret = True
         try:
@@ -62,8 +90,8 @@ class Poster():
             msg["Subject"] = Header(mail_title, 'utf-8')
             msg["From"] = sender_mail
             msg["To"] = receiver
-
             mail_content = MIMEText(mail_content, "plain", 'utf-8')
+
             msg.attach(mail_content)
             # 添加pdf附件
             msg.attach(self.pdf_apart)
