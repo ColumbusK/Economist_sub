@@ -1,11 +1,14 @@
-from email.mime.text import MIMEText
-from email.header import Header
-from smtplib import SMTP_SSL
-from email.mime.application import MIMEApplication
-from email.mime.multipart import MIMEMultipart
 import os
-import yagmail
 import random
+from email.header import Header
+from email.mime.application import MIMEApplication
+from email.mime.image import MIMEImage
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from smtplib import SMTP_SSL
+import smtplib
+
+import yagmail
 
 Mails = [
     {
@@ -30,14 +33,36 @@ Mails = [
     },
 ]
 
-# sender_qq为发件人的qq号码
-mail_163 = 'columbusknight@163.com'
-mail_163_2 = 'ColumbusK@163.com'
-mail_qq = 'zkzkao@foxmail.com'
-# pwd为qq邮箱的授权码
-pwd_163 = 'IMZSDHKHDACEZDSY'
-pwd_163_2 = 'EJXNFEVIVTGFHEFR'
-pwd_qq = 'ptypudtvvhlecajj'
+
+HTML = """
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  </style>
+</head>
+
+<body style="width: 100vw; height: 100vh">
+  <div style="margin:10px auto; width: 80vw; height: 100%; border: 2px solid #999; overflow:hidden">
+    <div style="margin:10px auto; width: 95%">
+      <img src="cid:eco_logo" alt="" style="width: 100%; height: 100%">
+    </div>
+    <div style="margin:10px auto; width: 80%; font-size:medium">
+      <p><strong style="color: #ff548c;">Username</strong>, 你好</p>
+    </div>
+    <div style="margin:10px auto; margin-top: 190px; width: 70%">
+      <img src="cid:bili_logo" alt="" srcset="" style="width: 100%; height: 100%">
+    </div>
+    <h4 style="text-align: center; font-size:medium; color: #05affe">@哥伦布骑士</h4>
+  </div>
+</body>
+
+</html>
+"""
 
 
 smtp_163 = 'smtp.163.com'
@@ -52,14 +77,11 @@ mail_title = '哥伦布骑士的报刊厅(测试2.1)'
 
 class Poster():
     def __init__(self, pdf_path: str) -> None:
-        self.mail = mail_qq
-        self.pwd = pwd_qq
-        self.mail_content = "您好, 新一期的经济学人已送达, 请查收! 享受阅读, 祝您天天好心情!"
-        self.mail_title = "哥伦布骑士的报刊厅(测试2.1)"
-        self.smtp = smtp_qq
+        self.smtp_service = None
         self.pdf_apart = None
         self.pdf_path = pdf_path
-        self.smtp_service = None
+        self.mail_content = "您好, 新一期的经济学人已送达, 请查收! 享受阅读, 祝您天天好心情!"
+        self.mail_title = "哥伦布骑士的报刊厅(V2.3)"
 
     def pdf_init(self):
         pdf_path = self.pdf_path
@@ -82,13 +104,14 @@ class Poster():
         host_server = self.smtp_service['smtp']
         pwd = self.smtp_service['auth']
         sender_mail = self.smtp_service['mail']
+        # 邮件内容
         mail_title = self.mail_title
         ret = True
         try:
             # 构造邮件
             msg = MIMEMultipart()
             msg["Subject"] = Header(mail_title, 'utf-8')
-            msg["From"] = sender_mail
+            msg["From"] = Header("哥伦布骑士", 'utf-8')
             msg["To"] = receiver
             mail_content = MIMEText(mail_content, "plain", 'utf-8')
 
@@ -120,6 +143,60 @@ class Poster():
         else:
             print(receiver, "邮件发送失败 ×")
         return ret
+
+    def send_html_mail(self, receiver: str, mail_content: str):
+        self.load_smtp()
+        # 配置SMTP服务
+        host_server = self.smtp_service['smtp']
+        sender_mail = self.smtp_service['mail']
+        pwd = self.smtp_service['auth']
+
+        # 构造邮件
+        msg = MIMEMultipart('related')
+        msg["Subject"] = Header(self.mail_title, 'utf-8')
+        msg["From"] = Header("哥伦布骑士", 'utf-8')
+        msg["To"] = receiver
+        mail_content = MIMEText(mail_content, "plain", 'utf-8')
+        # 添加正文
+        msg.attach(mail_content)
+        # 添加pdf附件
+        msg.attach(self.pdf_apart)
+        # HTML部分
+        msgAlternative = MIMEMultipart('alternative')
+        msgAlternative.attach(MIMEText(HTML, 'html', 'utf-8'))
+        msg.attach(msgAlternative)
+        # HTML插图
+        fp = open('../resource/TheEco_logo.png', 'rb')
+        msgImage1 = MIMEImage(fp.read())
+        fp.close()
+        fp = open('../resource/Bilibili_Logo.png', 'rb')
+        msgImage2 = MIMEImage(fp.read())
+        fp.close()
+        # 定义图片 ID，在 HTML 文本中引用
+        msgImage1.add_header('Content-ID', '<eco_logo>')
+        msgImage2.add_header('Content-ID', '<bili_logo>')
+        msg.attach(msgImage1)
+        msg.attach(msgImage2)
+        # 送信状态标志位
+        flag = True
+        # 送信主流程
+        try:
+            smtp = smtplib.SMTP_SSL(host=host_server)
+            smtp.connect(host=host_server, port=465)
+            # 登录发邮件服务器
+            smtp.login(user=sender_mail, password=pwd)
+            # 实际发送、接收邮件配置
+            smtp.sendmail(from_addr=sender_mail,
+                          to_addrs=receiver, msg=msg.as_string())
+            smtp.quit()
+        except Exception as e:
+            print(e)
+            flag = False
+        if flag:
+            print(receiver, "邮件发送成功 √")
+        else:
+            print(receiver, "邮件发送失败 ×")
+        return flag
 
 
 def batch_send(receivers: list, subject: str, contents: list, attachment_path: str):
