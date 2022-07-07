@@ -8,7 +8,7 @@ import os
 
 sender = 'zkzkao@foxmail.com'
 # 接收邮件，可设置为你的QQ邮箱或者其他邮箱
-receivers = ['3459068367@qq.com']
+receivers = ['3459068367@qq.com', 'columbusknight@163.com']
 
 msgRoot = MIMEMultipart('related')
 msgRoot['From'] = Header("哥伦布骑士", 'utf-8')
@@ -30,8 +30,8 @@ mail_template = """
   </style>
 </head>
 
-<body style="width: 100vw; height: 100vh">
-  <div style="margin:10px auto; width: 375px; height: auto; border: 2px solid #999; overflow:hidden">
+<body style="width: 100vw; height: 600px">
+  <div style="margin:10px auto; width: 375px; height: 570px; border: 2px solid #999; overflow:hidden">
     <div style="margin:10px auto; width: 95%">
       <img src="cid:image1" alt="" style="width: 100%; height: 100%">
     </div>

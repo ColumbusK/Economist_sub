@@ -34,7 +34,7 @@ Mails = [
 ]
 
 
-HTML = """
+HTML_TEMPLETE = """
 <!DOCTYPE html>
 <html lang="en">
 
@@ -144,7 +144,7 @@ class Poster():
             print(receiver, "邮件发送失败 ×")
         return ret
 
-    def send_html_mail(self, receiver: str, mail_content: str):
+    def send_html_mail(self, receiver: str, html_content: str):
         self.load_smtp()
         # 配置SMTP服务
         host_server = self.smtp_service['smtp']
@@ -156,14 +156,11 @@ class Poster():
         msg["Subject"] = Header(self.mail_title, 'utf-8')
         msg["From"] = Header("哥伦布骑士", 'utf-8')
         msg["To"] = receiver
-        mail_content = MIMEText(mail_content, "plain", 'utf-8')
-        # 添加正文
-        msg.attach(mail_content)
         # 添加pdf附件
         msg.attach(self.pdf_apart)
         # HTML部分
         msgAlternative = MIMEMultipart('alternative')
-        msgAlternative.attach(MIMEText(HTML, 'html', 'utf-8'))
+        msgAlternative.attach(MIMEText(html_content, 'html', 'utf-8'))
         msg.attach(msgAlternative)
         # HTML插图
         fp = open('../resource/TheEco_logo.png', 'rb')
