@@ -152,3 +152,10 @@ def get_all_suber():
     sql = '''SELECT * FROM subers ORDER BY "sub_time" desc;'''
     res = db.fetchall(sql)
     return res
+
+
+def make_record(username: str, email: str, magzine_date: str, sent_time: str):
+    db = SqliteUtil()
+    sql = f'''INSERT INTO sent_records(username, email, magzine_date, sent_time) 
+        VALUES("{username}","{email}", "{magzine_date}", "{sent_time}");'''
+    db.insert(sql)

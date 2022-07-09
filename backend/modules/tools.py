@@ -19,7 +19,7 @@ def match_email(text: str) -> str:
     Returns:
         str: 评论中邮箱
     """
-    pattern = re.compile(r"[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-]+")
+    pattern = re.compile(r"[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]{2,10}\.[a-zA-Z0-9-]+")
     mail = re.search(pattern=pattern, string=text)
     if mail:
         mail_addr = mail.group(0)
@@ -46,3 +46,9 @@ def get_last_saturday():
     last_saturday = last_saturday.strftime("%Y/%m/%d")
     # print(last_saturday)
     return last_saturday
+
+
+def get_time_stamp() -> str:
+    now = time.localtime()
+    stamp = time.strftime("%Y-%m-%d %H:%M:%S", now)
+    return stamp

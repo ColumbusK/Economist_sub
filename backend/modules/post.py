@@ -1,12 +1,14 @@
 import os
 import random
+import smtplib
 from email.header import Header
 from email.mime.application import MIMEApplication
 from email.mime.image import MIMEImage
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from email.utils import formataddr, parseaddr
 from smtplib import SMTP_SSL
-import smtplib
+from modules.tools import get_time_stamp
 
 import yagmail
 
@@ -14,65 +16,40 @@ Mails = [
     {
         "mail": "zkzkao@foxmail.com",
         "auth": "ptypudtvvhlecajj",
-        'smtp': "smtp.qq.com"
+        'smtp': "smtp.qq.com",
+        'counts': 0
     },
     {
         "mail": "2683747644@qq.com",
         "auth": "rewhrnednwjjebig",
-        'smtp': "smtp.qq.com"
+        'smtp': "smtp.qq.com",
+        'counts': 0
+    },
+    {
+        "mail": "2326617964@qq.com",
+        "auth": "pxljpyegdjkteaja",
+        'smtp': "smtp.qq.com",
+        'counts': 0
+    },
+    {
+        "mail": "2232565130@qq.com",
+        "auth": "ctejvcamfkhediid",
+        'smtp': "smtp.qq.com",
+        'counts': 0
     },
     {
         "mail": "columbusknight@163.com",
         "auth": "IMZSDHKHDACEZDSY",
-        'smtp': "smtp.163.com"
+        'smtp': "smtp.163.com",
+        'counts': 0
     },
     {
         "mail": "ColumbusK@163.com",
         "auth": "EJXNFEVIVTGFHEFR",
-        'smtp': "smtp.163.com"
+        'smtp': "smtp.163.com",
+        'counts': 0
     },
 ]
-
-
-HTML_TEMPLETE = """
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  </style>
-</head>
-
-<body style="width: 100vw; height: 100vh">
-  <div style="margin:10px auto; width: 80vw; height: 100%; border: 2px solid #999; overflow:hidden">
-    <div style="margin:10px auto; width: 95%">
-      <img src="cid:eco_logo" alt="" style="width: 100%; height: 100%">
-    </div>
-    <div style="margin:10px auto; width: 80%; font-size:medium">
-      <p><strong style="color: #ff548c;">Username</strong>, 你好</p>
-    </div>
-    <div style="margin:10px auto; margin-top: 190px; width: 70%">
-      <img src="cid:bili_logo" alt="" srcset="" style="width: 100%; height: 100%">
-    </div>
-    <h4 style="text-align: center; font-size:medium; color: #05affe">@哥伦布骑士</h4>
-  </div>
-</body>
-
-</html>
-"""
-
-
-smtp_163 = 'smtp.163.com'
-smtp_qq = 'smtp.qq.com'
-# 收件人邮箱receiver
-receiver = 'zkangzhi4@gmail.com'
-# 邮件的正文内容
-mail_content = '您新一期的经济学人已送达,请查收! 享受阅读,祝您天天好心情!'
-# 邮件标题
-mail_title = '哥伦布骑士的报刊厅(测试2.1)'
 
 
 class Poster():
@@ -96,7 +73,16 @@ class Poster():
     def load_smtp(self):
         """选择smtp服务商"""
         self.smtp_service = random.choice(Mails)
+        if self.smtp_service['counts'] > 2:
+            Mails.remove(self.smtp_service)
         print("发件邮箱>>>:", self.smtp_service['mail'])
+
+    def format_addr(self, addr: str):
+        # 解析邮件地址，以保证邮有别名可以显示
+        alias_name, addr = parseaddr(addr)
+        # 防止中文问题，进行转码处理，并格式化为str返回
+        return formataddr((Header(alias_name, charset="utf-8").encode(),
+                           addr.encode("uft-8") if isinstance(addr, unicode) else addr))
 
     def send_pdf_mail(self, receiver: str, mail_content: str):
         self.load_smtp()
@@ -110,8 +96,9 @@ class Poster():
         try:
             # 构造邮件
             msg = MIMEMultipart()
+            receiver = self.format_addr(receiver)
             msg["Subject"] = Header(mail_title, 'utf-8')
-            msg["From"] = Header("哥伦布骑士", 'utf-8')
+            msg["From"] = Header(f"哥伦布骑士 <{sender_mail}>", 'utf-8')
             msg["To"] = receiver
             mail_content = MIMEText(mail_content, "plain", 'utf-8')
 
@@ -119,14 +106,6 @@ class Poster():
             # 添加pdf附件
             msg.attach(self.pdf_apart)
 
-            # ssl登录
-            # smtp = SMTP_SSL(host_server)
-            # # set_debuglevel()是用来调试的。参数值为1表示开启调试模式，参数值为0关闭调试模式
-            # # smtp.set_debuglevel(1)
-            # smtp.ehlo(host_server)
-            # smtp.login(sender_mail, pwd)
-            # smtp.sendmail(sender_mail, receiver, msg.as_string())
-            # smtp.quit()
             with SMTP_SSL(host=host_server, port=465) as smtp:
                 # 登录发邮件服务器
                 smtp.login(user=sender_mail, password=pwd)
@@ -147,15 +126,16 @@ class Poster():
     def send_html_mail(self, receiver: str, html_content: str):
         self.load_smtp()
         # 配置SMTP服务
-        host_server = self.smtp_service['smtp']
+        smtp_server = self.smtp_service['smtp']
         sender_mail = self.smtp_service['mail']
         pwd = self.smtp_service['auth']
 
         # 构造邮件
         msg = MIMEMultipart('related')
         msg["Subject"] = Header(self.mail_title, 'utf-8')
-        msg["From"] = Header("哥伦布骑士", 'utf-8')
+        msg["From"] = Header(f"哥伦布骑士 <{sender_mail}>", 'utf-8')
         msg["To"] = receiver
+        msg["date"] = get_time_stamp()
         # 添加pdf附件
         msg.attach(self.pdf_apart)
         # HTML部分
@@ -163,35 +143,36 @@ class Poster():
         msgAlternative.attach(MIMEText(html_content, 'html', 'utf-8'))
         msg.attach(msgAlternative)
         # HTML插图
-        fp = open('../resource/TheEco_logo.png', 'rb')
+        fp = open('./resource/TheEco_logo.png', 'rb')
         msgImage1 = MIMEImage(fp.read())
         fp.close()
-        fp = open('../resource/Bilibili_Logo.png', 'rb')
+        fp = open('./resource/Bilibili_Logo.png', 'rb')
         msgImage2 = MIMEImage(fp.read())
         fp.close()
         # 定义图片 ID，在 HTML 文本中引用
-        msgImage1.add_header('Content-ID', '<eco_logo>')
-        msgImage2.add_header('Content-ID', '<bili_logo>')
+        msgImage1.add_header('Content-ID', '<image1>')
+        msgImage2.add_header('Content-ID', '<image2>')
         msg.attach(msgImage1)
         msg.attach(msgImage2)
         # 送信状态标志位
         flag = True
         # 送信主流程
         try:
-            smtp = smtplib.SMTP_SSL(host=host_server)
-            smtp.connect(host=host_server, port=465)
-            # 登录发邮件服务器
-            smtp.login(user=sender_mail, password=pwd)
-            # 实际发送、接收邮件配置
-            smtp.sendmail(from_addr=sender_mail,
-                          to_addrs=receiver, msg=msg.as_string())
-            smtp.quit()
+            with SMTP_SSL(host=smtp_server, port=465) as smtp:
+                # 登录发邮件服务器
+                smtp.login(user=sender_mail, password=pwd)
+                # 实际发送、接收邮件配置
+                smtp.sendmail(from_addr=sender_mail,
+                              to_addrs=receiver, msg=msg.as_string())
+                smtp.quit()
         except Exception as e:
             print(e)
             flag = False
         if flag:
             print(receiver, "邮件发送成功 √")
         else:
+            # 失败SMTP计数
+            self.smtp_service['counts'] += 1
             print(receiver, "邮件发送失败 ×")
         return flag
 
