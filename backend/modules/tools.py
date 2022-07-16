@@ -1,6 +1,7 @@
 import time
 import re
 import datetime
+import os
 
 
 def paser_ctime(ctime: int) -> str:
@@ -52,3 +53,29 @@ def get_time_stamp() -> str:
     now = time.localtime()
     stamp = time.strftime("%Y-%m-%d %H:%M:%S", now)
     return stamp
+
+
+class Endpoint:
+    """邮件断点发送功能"""
+
+    def __init__(self, first_mail: str, file_path='./endpoint.txt') -> None:
+        """初始化记录文件"""
+        self.file_path = file_path
+        if not os.path.exists(self.file_path):
+            self.add_point(first_mail)
+
+    def add_point(self, mail: str) -> None:
+        """记录最后发送的地址"""
+        fp = open(self.file_path, 'w', encoding='utf-8')
+        fp.write(mail)
+        fp.close()
+
+    def get_point(self) -> str:
+        """获取最后发送的邮箱"""
+        fp = open(self.file_path, 'r', encoding='utf-8')
+        mail = fp.read()
+        fp.close()
+        return mail
+
+    def remove(self):
+        os.remove(self.file_path)
