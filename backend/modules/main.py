@@ -14,17 +14,23 @@ mail_addr = "zkangzhi4@gmail.com"
 
 
 def main(pdf_path: str):
-    update_db()
+    new_subers_emails = update_db()
     suber_list = get_all_suber()
     first_mail = suber_list[0][2]
     endpoint = Endpoint(first_mail)
     pub_date = get_last_saturday()
     mail_title = '哥伦布骑士的报刊厅(V2.3)'
     content_template = HTML_TEMPLATE
-    for suber in suber_list:
-        if suber[2] == endpoint.get_point():
-            index = suber_list.index(suber)
-            suber_list = suber_list[index:]
+    inp = input("选择发送模式(1: 新增, 2: 断点)>>>:")
+    if inp == '2':
+        print("------断点检查------", endpoint.get_point())
+        for suber in suber_list:
+            if suber[2] in endpoint.get_point():
+                index = suber_list.index(suber)+1
+                suber_list = suber_list[index:]
+                print("上次发送截至:", suber)
+    elif inp == '1':
+        suber_list = new_subers_emails
     print(suber_list)
     print("刊数：", pub_date)
     inp = input("是否发送(y/n)>>>:")
@@ -61,4 +67,8 @@ def main(pdf_path: str):
                 print(f"{nickname:=^100}\n")
             else:         # 发送失败则切换邮箱, 并从失败处更新队列向后发送
                 poster.load_smtp()
+            if i % 20 == 0:
+                pause = random.random() * 10
+                print(f"停止 {pause:.2f} 秒")
+                time.sleep(pause)
         endpoint.remove()

@@ -114,10 +114,11 @@ class SqliteUtil():
             self.db.close()
 
 
-def update_db():
+def update_db() -> list:
     logging.info("---开始更新订阅用户信息---")
     review = Review()
     suber_info_ls = review.get_suber_info()
+    new_subers_emails = []
     for suber_info in suber_info_ls:
         logging.info(["获取到用户信息", suber_info])
         username = suber_info['username']
@@ -139,12 +140,15 @@ def update_db():
                 res = db.fetchone(sql)
                 logging.info(["更新用户: ", res])
             continue
-        sql = f'''INSERT INTO subers(username, email, sub_time) 
+        sql = f'''INSERT INTO subers(username, email, sub_time)
     VALUES("{username}","{email}", "{sub_time}");'''
         print("新增用户: ", sql)
         logging.info(["新增用户: ", sql])
         db = SqliteUtil()
         db.insert(sql)
+        new_subers_emails.append(['id', username, email, sub_time])
+        print(f'总计新增 <{len(new_subers_emails)}> 名用户')
+    return new_subers_emails
 
 
 def get_all_suber():
@@ -156,6 +160,6 @@ def get_all_suber():
 
 def make_record(username: str, email: str, magzine_date: str, sent_time: str):
     db = SqliteUtil()
-    sql = f'''INSERT INTO sent_records(username, email, magzine_date, sent_time) 
+    sql = f'''INSERT INTO sent_records(username, email, magzine_date, sent_time)
         VALUES("{username}","{email}", "{magzine_date}", "{sent_time}");'''
     db.insert(sql)

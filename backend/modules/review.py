@@ -6,7 +6,7 @@ import logging
 
 
 class Review:
-    def __init__(self, bv = "893986615") -> None:
+    def __init__(self, bv="893986615") -> None:
         self.reply_api = "https://api.bilibili.com/x/v2/reply"
         self.bv = bv
         self.reviews = list()
@@ -14,7 +14,7 @@ class Review:
 
     def get_page(self, pn=1):
         params = {
-            "jsonp":"jsonp", 
+            "jsonp": "jsonp",
             "pn": pn,
             "type": 1,
             "oid": self.bv,
@@ -25,7 +25,8 @@ class Review:
         }
         try:
             time.sleep(random.random()*7)
-            r = requests.get(url=self.reply_api, params=params, headers=headers)
+            r = requests.get(url=self.reply_api,
+                             params=params, headers=headers)
             print(r.url)
             data = r.json()
             return data
@@ -38,6 +39,7 @@ class Review:
         while True:
             try:
                 replies = self.get_page(pn=pn)['data']['replies']
+                print(len(replies), type(replies))
             except TypeError:
                 print("获取评论失败！订阅信息更新失败！")
                 logging.info("获取评论失败！订阅信息更新失败！")
@@ -48,7 +50,7 @@ class Review:
             pn += 1
         self.reviews = all_review
         return all_review
-            
+
     def get_suber_info(self):
         info_list = list()
         reviews = self.get_reviews()
@@ -62,5 +64,3 @@ class Review:
             suber_info['sub_time'] = sub_time
             info_list.append(suber_info)
         return info_list
-
-

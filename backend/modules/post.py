@@ -15,7 +15,7 @@ import yagmail
 Mails = [
     {
         "mail": "zkzkao@foxmail.com",
-        "auth": "ptypudtvvhlecajj",
+        "auth": "wohkhifwcsxmbigf",
         'smtp': "smtp.qq.com",
         'counts': 0
     },
@@ -38,6 +38,18 @@ Mails = [
         'counts': 0
     },
     {
+        "mail": "2232565130@qq.com",
+        "auth": "xsuxtrcozrtjebgi",
+        'smtp': "smtp.qq.com",
+        'counts': 0
+    },
+    {
+        "mail": "2686513920@qq.com",
+        "auth": "aekvzjfejwvddgbd",
+        'smtp': "smtp.qq.com",
+        'counts': 0
+    },
+    {
         "mail": "columbusknight@163.com",
         "auth": "IMZSDHKHDACEZDSY",
         'smtp': "smtp.163.com",
@@ -49,6 +61,7 @@ Mails = [
         'smtp': "smtp.163.com",
         'counts': 0
     },
+
 ]
 
 
@@ -58,7 +71,7 @@ class Poster():
         self.pdf_apart = None
         self.pdf_path = pdf_path
         self.mail_content = "您好, 新一期的经济学人已送达, 请查收! 享受阅读, 祝您天天好心情!"
-        self.mail_title = "哥伦布骑士的报刊厅(V2.3)"
+        self.mail_title = "哥伦布骑士的报刊厅(V3.0)"
 
     def pdf_init(self):
         pdf_path = self.pdf_path
@@ -124,6 +137,9 @@ class Poster():
         return ret
 
     def send_html_mail(self, receiver: str, html_content: str):
+        if not receiver:
+            print(f'{receiver}: 用户邮箱存在错误!')
+            return
         self.load_smtp()
         # 配置SMTP服务
         smtp_server = self.smtp_service['smtp']
