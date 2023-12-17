@@ -31,7 +31,7 @@ def main(pdf_path: str):
                 print("上次发送截至:", suber)
     elif inp == '1':
         suber_list = new_subers_emails
-    print(suber_list)
+        print(suber_list)
     print("刊数：", pub_date)
     inp = input("是否发送(y/n)>>>:")
     poster = Poster(pdf_path=pdf_path)

@@ -1,6 +1,5 @@
 import os
 import random
-import smtplib
 from email.header import Header
 from email.mime.application import MIMEApplication
 from email.mime.image import MIMEImage
@@ -15,7 +14,7 @@ import yagmail
 Mails = [
     {
         "mail": "zkzkao@foxmail.com",
-        "auth": "wohkhifwcsxmbigf",
+        "auth": "kwzdwsqnloihcaic",
         'smtp': "smtp.qq.com",
         'counts': 0
     },
@@ -111,7 +110,8 @@ class Poster():
             msg = MIMEMultipart()
             receiver = self.format_addr(receiver)
             msg["Subject"] = Header(mail_title, 'utf-8')
-            msg["From"] = Header(f"哥伦布骑士 <{sender_mail}>", 'utf-8')
+            print(f"ColumbusK <{sender_mail}>", 'utf-8')
+            msg["From"] = Header(f"ColumbusK <{sender_mail}>", 'utf-8')
             msg["To"] = receiver
             mail_content = MIMEText(mail_content, "plain", 'utf-8')
 
@@ -149,7 +149,8 @@ class Poster():
         # 构造邮件
         msg = MIMEMultipart('related')
         msg["Subject"] = Header(self.mail_title, 'utf-8')
-        msg["From"] = Header(f"哥伦布骑士 <{sender_mail}>", 'utf-8')
+        print(f"ColumbusK <{sender_mail}>".encode('utf-8'))
+        msg["From"] = Header(f"zkz <{sender_mail}>")
         msg["To"] = receiver
         msg["date"] = get_time_stamp()
         # 添加pdf附件
@@ -159,10 +160,10 @@ class Poster():
         msgAlternative.attach(MIMEText(html_content, 'html', 'utf-8'))
         msg.attach(msgAlternative)
         # HTML插图
-        fp = open('./resource/TheEco_logo.png', 'rb')
+        fp = open(r'./resource/TheEco_logo.png', 'rb')
         msgImage1 = MIMEImage(fp.read())
         fp.close()
-        fp = open('./resource/Bilibili_Logo.png', 'rb')
+        fp = open(r'./resource/Bilibili_Logo.png', 'rb')
         msgImage2 = MIMEImage(fp.read())
         fp.close()
         # 定义图片 ID，在 HTML 文本中引用
