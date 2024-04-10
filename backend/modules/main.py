@@ -12,9 +12,10 @@ PROJECT_ABSOLUTE_PATH = os.path.dirname(
 pdf_path = r"F:\Nutstore\图书馆\报刊\The_economist\TE20220709.pdf"
 mail_addr = "zkangzhi4@gmail.com"
 
+first_suber = [0, "哥伦布骑士", "zkzkao@foxmail.com", ""]
+
 
 def main(pdf_path: str):
-    new_subers_emails = update_db()
     suber_list = get_all_suber()
     first_mail = suber_list[0][2]
     endpoint = Endpoint(first_mail)
@@ -27,10 +28,14 @@ def main(pdf_path: str):
         for suber in suber_list:
             if suber[2] in endpoint.get_point():
                 index = suber_list.index(suber)+1
-                suber_list = suber_list[index:]
+                suber_list = suber_list[:index]
+                print(suber_list)
                 print("上次发送截至:", suber)
+        suber_list.insert(0, first_suber)
     elif inp == '1':
+        new_subers_emails = update_db()
         suber_list = new_subers_emails
+        suber_list.insert(0, first_suber)
         print(suber_list)
     print("刊数：", pub_date)
     inp = input("是否发送(y/n)>>>:")

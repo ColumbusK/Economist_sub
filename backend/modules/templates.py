@@ -16,19 +16,16 @@ HTML_TEMPLATE = """
       <img src="cid:image1" alt="" style="width: 100%; height: 100%">
     </div>
     <div style="margin:10px auto; width: 80%; font-size:medium">
-      <p><strong style="color: #ff548c;">{{username}}</strong>，你好。 2.0版本网站已上线，新一期经济学人<strong>{{date}}</strong>刊已发布, 请查看! 享受阅读, 祝你天天好心情!</p>
-      <p><strong style="color: red;">注意：</strong>全新2.0版本的站点已上线测试，请大家点击下方红色主力网站链接前往下载。为求不被和谐外刊采取资源托管无需跳转网盘，但加载时间较长请耐心等待加载</p>
-      <a href="https://newstandshare.azurewebsites.net/" style="text-decoration:none;">
+      <p><strong style="color: #ff548c;">{{username}}</strong>，你好。 失踪人口回归，2.0版本网站已恢复上线，新一期经济学人<strong>{{date}}</strong>刊已发布, 请查看! 享受阅读, 祝你天天好心情!</p>
+      <p><strong style="color: red;">注意：</strong>浏览器推荐使用Edge/Chrome</p>
+      <a href="https://knightmagzines.netlify.app/" style="text-decoration:none;">
         <strong style="color: red; font-size: larger">主力站点</strong>
       </a>
       <a href="https://newstandshare.herokuapp.com/" style="text-decoration:none;">
         <strong style="color: skyblue;">备用站点</strong>
       </a>
       <p>(PS：如果此项目确实帮助到了您，您可以点击邮件下方的 @哥伦布骑士 前往原视频页面为我一键三连或者分享给需要的人！)
-        后续请直接前往网站获取最新一期，注意收藏网址
-        <a href="https://newstandshare.azurewebsites.net/" style="text-decoration:none;">
-          https://newstandshare.azurewebsites.net
-        </a>
+        后续请直接前往网站获取最新一期，注意收藏网址。无法显示请刷新页面，或使用桌面浏览器打开。
       </p>
     </div>
     <div style="margin:0 auto; margin-top: 90px; width: 50%">
