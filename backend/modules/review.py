@@ -27,7 +27,7 @@ class Review:
             time.sleep(random.random()*7)
             r = requests.get(url=self.reply_api,
                              params=params, headers=headers)
-            print(r.url)
+            print("comments url", r.url)
             data = r.json()
             return data
         except Exception as e:
@@ -35,8 +35,8 @@ class Review:
 
     def get_reviews(self):
         all_review = list()
-        pn = 1
-        while True:
+        pn = 0
+        while pn < 10:
             try:
                 replies = self.get_page(pn=pn)['data']['replies']
                 print(len(replies), type(replies))
