@@ -3,18 +3,20 @@ import traceback
 import sys
 from modules.review import Review
 import os
+
 # 引入
 import logging
 
 # 处理路径
 cur_dir = os.path.abspath(__file__).rsplit("/", 1)[0]
-log_path = os.path.join(os.path.dirname(
-    os.path.dirname(os.path.abspath(__file__))), 'app.log')
+log_path = os.path.join(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "app.log"
+)
 
 # 1. 创建日志对象
 logger = logging.getLogger()
 # 2. 日志文件处理
-fh = logging.FileHandler(filename=log_path, mode='a', encoding='utf-8')
+fh = logging.FileHandler(filename=log_path, mode="a", encoding="utf-8")
 # 2.1 日志格式
 formatter = logging.Formatter("%(levelname)s:%(asctime)s:%(message)s")
 # 2.2 应用日志格式
@@ -26,8 +28,8 @@ logger.addHandler(fh)
 logger.setLevel(logging.DEBUG)
 
 # 4. 日志输出
-logger.debug('This message should go to the log file')
-logger.info('So should this')
+logger.debug("This message should go to the log file")
+logger.info("So should this")
 
 # logging.basicConfig(filename=log_path, level=logging.DEBUG,
 #                     filemode='a', format='%(levelname)s:%(asctime)s:%(message)s', datefmt='%Y-%d-%m %H:%M:%S')
@@ -35,18 +37,19 @@ logger.info('So should this')
 # logging.info('So should this')
 
 
-class SqliteUtil():
+class SqliteUtil:
     def __init__(self) -> None:
-        '''初始化方法，连接数据库'''
-        self.database_url = os.path.join(os.path.dirname(
-            os.path.dirname(os.path.abspath(__file__))), 'suber.db')
+        """初始化方法，连接数据库"""
+        self.database_url = os.path.join(
+            os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "suber.db"
+        )
         # 连接数据库
         self.db = sqlite3.connect(self.database_url)
         # 设置游标，并将游标设置为字典类型
         self.cursor = self.db.cursor()
 
     def insert(self, sql):
-        '''插入数据库'''
+        """插入数据库"""
         try:
             self.cursor.execute(sql)
             self.db.commit()
@@ -76,15 +79,14 @@ class SqliteUtil():
         return result
 
     def fetchall(self, sql) -> list:
-        """查询数据库，返回多个结果集
-        """
+        """查询数据库，返回多个结果集"""
         results = None
         try:
             self.cursor.execute(sql)
             results = self.cursor.fetchall()
-        except:   # 采用sys模块回溯最后的异常
+        except:  # 采用sys模块回溯最后的异常
             info = sys.exc_info()
-            print(info[0], ':', info[1])
+            print(info[0], ":", info[1])
             self.db.rollback()
         finally:
             self.db.close()
@@ -95,8 +97,8 @@ class SqliteUtil():
         try:
             self.cursor.execute(sql)
             self.db.commit()
-        except:   # 异常保存到日志
-            fp = open(r'./log.txt', encoding='utf-8')
+        except:  # 异常保存到日志
+            fp = open(r"./log.txt", encoding="utf-8")
             traceback.print_exc(file=fp)
             fp.flush()
             fp.close()
@@ -121,45 +123,46 @@ def update_db() -> list:
     new_subers_emails = []
     for suber_info in suber_info_ls:
         logging.info(["获取到用户信息", suber_info])
-        username = suber_info['username']
-        email = suber_info['email']
-        sub_time = suber_info['sub_time']
-        sql = f'''SELECT * FROM  subers WHERE email="{email}"'''
+        username = suber_info["username"]
+        email = suber_info["email"]
+        sub_time = suber_info["sub_time"]
+        uid = suber_info["uid"]
+        sql = f'''SELECT * FROM  subers_new WHERE email="{email}"'''
         db = SqliteUtil()
         res = db.fetchone(sql)
         logging.info(["数据库存在用户信息: ", res])
         # 用户存在则检查更新
         if res:
             if res[1] != username:
-                sql = f'''UPDATE subers SET username = '{username}' WHERE suber_id = {res[0]};'''
+                sql = f"""UPDATE subers_new SET username = '{username}' WHERE suber_id = {res[0]};"""
                 logging.info([f"更新用户{res[1]}语句: ", sql])
                 db = SqliteUtil()
                 db.update(sql)
-                sql = f'''SELECT * FROM  subers WHERE email="{email}"'''
+                sql = f'''SELECT * FROM  subers_new WHERE email="{email}"'''
                 db = SqliteUtil()
                 res = db.fetchone(sql)
                 logging.info(["更新用户: ", res])
             continue
-        sql = f'''INSERT INTO subers(username, email, sub_time)
-    VALUES("{username}","{email}", "{sub_time}");'''
+        sql = f"""INSERT INTO subers_new(username, email, sub_time, bid)
+    VALUES("{username}","{email}", "{sub_time}", "{uid}");"""
         print("新增用户: ", sql)
         logging.info(["新增用户: ", sql])
         db = SqliteUtil()
         db.insert(sql)
-        new_subers_emails.append(['id', username, email, sub_time])
-        print(f'总计新增 <{len(new_subers_emails)}> 名用户')
+        new_subers_emails.append(["id", username, email, sub_time])
+        print(f"总计新增 <{len(new_subers_emails)}> 名用户")
     return new_subers_emails
 
 
 def get_all_suber():
     db = SqliteUtil()
-    sql = '''SELECT * FROM subers ORDER BY "sub_time" desc;'''
+    sql = """SELECT * FROM subers_new ORDER BY "sub_time" desc;"""
     res = db.fetchall(sql)
     return res
 
 
 def make_record(username: str, email: str, magzine_date: str, sent_time: str):
     db = SqliteUtil()
-    sql = f'''INSERT INTO sent_records(username, email, magzine_date, sent_time)
-        VALUES("{username}","{email}", "{magzine_date}", "{sent_time}");'''
+    sql = f"""INSERT INTO sent_records(username, email, magzine_date, sent_time)
+        VALUES("{username}","{email}", "{magzine_date}", "{sent_time}");"""
     db.insert(sql)

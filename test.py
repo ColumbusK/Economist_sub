@@ -1,47 +1,21 @@
-import random
+import requests
 
-Mails = [
-    {
-        "mail": "zkzkao@foxmail.com",
-        "auth": "ptypudtvvhlecajj",
-        'smtp': "smtp.qq.com",
-        'counts': 0
-    },
-    {
-        "mail": "2683747644@qq.com",
-        "auth": "rewhrnednwjjebig",
-        'smtp': "smtp.qq.com",
-        'counts': 0
-    },
-    {
-        "mail": "2326617964@qq.com",
-        "auth": "pxljpyegdjkteaja",
-        'smtp': "smtp.qq.com",
-        'counts': 0
-    },
-    {
-        "mail": "2232565130@qq.com",
-        "auth": "ctejvcamfkhediid",
-        'smtp': "smtp.qq.com",
-        'counts': 0
-    },
-    {
-        "mail": "columbusknight@163.com",
-        "auth": "IMZSDHKHDACEZDSY",
-        'smtp': "smtp.163.com",
-        'counts': 0
-    },
-    {
-        "mail": "ColumbusK@163.com",
-        "auth": "EJXNFEVIVTGFHEFR",
-        'smtp': "smtp.163.com",
-        'counts': 0
-    },
-]
+# 指定 URL
+url = "https://api.bilibili.com/x/v2/reply?jsonp=jsonp&pn=2&type=1&oid=893986615"
 
+# 添加请求头
+headers = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36",
+    "Cookie": """buvid3=2AB8F8CC-4B03-355A-CD6F-F3935A9E8C8057764infoc; b_nut=1698997257; i-wanna-go-back=-1; b_ut=7; _uuid=8C1056CFC-CFCE-1CCC-12A3-87EFD1DB37DA60611infoc; enable_web_push=DISABLE; CURRENT_FNVAL=4048; rpdid=|(u~)Yk~m~lY0J'uYm)mm~Jku; header_theme_version=CLOSE; buvid4=F789E310-F25F-4DAA-92E1-CD7443B55C0B61835-023110315-paGIybps7qzihZ%2F%2BHTI6Cg%3D%3D; buvid_fp_plain=undefined; LIVE_BUVID=AUTO3016997762517725; PVID=1; DedeUserID=13849597; DedeUserID__ckMd5=4237b2eb3e08a806; home_feed_column=5; FEED_LIVE_VERSION=V_HEADER_LIVE_NEW_POP; CURRENT_QUALITY=120; browser_resolution=1536-791; bili_ticket=eyJhbGciOiJIUzI1NiIsImtpZCI6InMwMyIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjUwNzUwNTEsImlhdCI6MTcyNDgxNTc5MSwicGx0IjotMX0.BV25ym4UJb1hCuK-AagqukONRo_8Nz6BACCT9_kQvZQ; bili_ticket_expires=1725074991; SESSDATA=c1731312%2C1740367856%2C7e593%2A82CjCj4pAdWHiyVNzGZL7EGD7jSY3qaSbp1dXP2rEKpviuUsBCq0Xfjg1YWPJm_4HqYRISVklia083TEgxNVAwbkRVWUNMYkVrckFXWThnY01IY2xFQXk2d1FNNFlpOVZLUFV2M1A2VkpBWDVXQ1B2ZlBQTTE3d1JwbVpEX1VjWlJXVTl2bkxjQ1VnIIEC; bili_jct=414cbadfcf5eb7c922b6afb2578ea7d2; fingerprint=08b73f712b2b80de3b917b5fc5d4c5d3; b_lsid=7145FDD7_1919765A6F4; bp_t_offset_13849597=970600933165629440; buvid_fp=08b73f712b2b80de3b917b5fc5d4c5d3; sid=7g1qds76""",
+}
 
-res = random.choice(Mails)
-print(res)
-res['counts'] += 1
-Mails.remove(res)
-print(Mails)
+# 发送 GET 请求
+response = requests.get(url, headers=headers)
+
+# 检查请求是否成功
+if response.status_code == 200:
+    # 解析 JSON 数据
+    data = response.json()
+    print(data)
+else:
+    print(f"请求失败，状态码: {response.status_code}")

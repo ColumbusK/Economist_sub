@@ -1,35 +1,40 @@
-from modules.db_handler import get_all_suber, update_db, make_record
-import os
-from modules.post import Poster, batch_send
-from modules.tools import match_email, get_last_saturday, get_time_stamp, Endpoint
-from modules.templates import HTML_TEMPLATE
 import time
 import random
+import os
 
-PROJECT_ABSOLUTE_PATH = os.path.dirname(
-    os.path.dirname(os.path.abspath(__file__)))
+from modules.db_handler import get_all_suber, update_db, make_record
+from modules.post import Poster
+from modules.tools import match_email, get_last_saturday, get_time_stamp, Endpoint
+from modules.templates import HTML_TEMPLATE
+from modules.test_poster import send_mail
+
+PROJECT_ABSOLUTE_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 pdf_path = r"F:\Nutstore\图书馆\报刊\The_economist\TE20220709.pdf"
 mail_addr = "zkangzhi4@gmail.com"
+
+me = (35, "哥伦布骑士", "zkzkao@foxmail.com", "2032-02-26 15:25:33", None, None)
 
 
 def main(pdf_path: str):
     new_subers_emails = update_db()
     suber_list = get_all_suber()
+    print(suber_list[:3])
     first_mail = suber_list[0][2]
     endpoint = Endpoint(first_mail)
     pub_date = get_last_saturday()
-    mail_title = '哥伦布骑士的报刊厅(V2.3)'
+    mail_title = "哥伦布骑士的报刊厅(V3.2)"
     content_template = HTML_TEMPLATE
     inp = input("选择发送模式(1: 新增, 2: 断点)>>>:")
-    if inp == '2':
+    if inp == "2":
         print("------断点检查------", endpoint.get_point())
         for suber in suber_list:
             if suber[2] in endpoint.get_point():
-                index = suber_list.index(suber)+1
+                index = suber_list.index(suber) + 1
                 suber_list = suber_list[index:]
                 print("上次发送截至:", suber)
-    elif inp == '1':
+                suber_list.insert(0, me)
+    elif inp == "1":
         suber_list = new_subers_emails
         print(suber_list)
     print("刊数：", pub_date)
@@ -37,7 +42,7 @@ def main(pdf_path: str):
     poster = Poster(pdf_path=pdf_path)
     poster.mail_title = mail_title
     poster.pdf_init()
-    if inp in 'yY':
+    if inp in "yY":
         i = 0
         while i < len(suber_list):
             nickname = suber_list[i][1]
@@ -45,27 +50,36 @@ def main(pdf_path: str):
             if mail_addr == "None":
                 i += 1
                 continue
-            mail_content = content_template.replace(
-                "{{username}}", nickname, 1)
+            mail_content = content_template.replace("{{username}}", nickname, 1)
             mail_content = mail_content.replace("{{date}}", pub_date, 1)
             print(f"\n{nickname:-^100}")
             print(nickname, pub_date)
-            if mail_addr != 'None':
+            if mail_addr != "None":
                 print(f"向 “{nickname}” : {mail_addr}发送")
-                res = poster.send_html_mail(receiver=mail_addr,
-                                            html_content=mail_content)
+                # res = poster.send_html_mail(
+                #     receiver=mail_addr, html_content=mail_content
+                # )
+                res = send_mail(
+                    receivers=mail_addr,
+                    subject="哥伦布骑士经济学人",
+                    contents=[mail_content],
+                )
                 print(res)
             time.sleep(random.random() * 10)
             if res:
                 i += 1
                 # 记录发送时间戳
                 time_stamp = get_time_stamp()
-                make_record(username=nickname, email=mail_addr,
-                            magzine_date=pub_date, sent_time=time_stamp)
+                make_record(
+                    username=nickname,
+                    email=mail_addr,
+                    magzine_date=pub_date,
+                    sent_time=time_stamp,
+                )
                 # 增加发送断点
                 endpoint.add_point(mail_addr)
                 print(f"{nickname:=^100}\n")
-            else:         # 发送失败则切换邮箱, 并从失败处更新队列向后发送
+            else:  # 发送失败则切换邮箱, 并从失败处更新队列向后发送
                 poster.load_smtp()
             if i % 20 == 0:
                 pause = random.random() * 10

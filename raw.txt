@@ -1,0 +1,493 @@
+<script type='text/javascript'>
+
+
+        docManager.addPage({
+          pageNum:  1 ,
+          fonts: [0],
+          origWidth:  902 ,
+          origHeight:  1276 ,
+          containerElem: document.getElementById("outer_page_1"),
+          blur:  false ,
+          contentUrl: "https://html.scribdassets.com/6jwzrctfb48m4x5g/pages/1-b79beb6c87.jsonp"
+        });
+
+
+
+        docManager.addPage({
+          pageNum:  2 ,
+          fonts: [0],
+          origWidth:  902 ,
+          origHeight:  1276 ,
+          containerElem: document.getElementById("outer_page_2"),
+          blur:  true ,
+          contentUrl: "https://html.scribdassets.com/6jwzrctfb48m4x5g/pages/2-69492a34b8.jsonp"
+        });
+
+
+
+        docManager.addPage({
+          pageNum:  3 ,
+          fonts: [0],
+          origWidth:  902 ,
+          origHeight:  1276 ,
+          containerElem: document.getElementById("outer_page_3"),
+          blur:  true ,
+          contentUrl: "https://html.scribdassets.com/6jwzrctfb48m4x5g/pages/3-a98e3890fd.jsonp"
+        });
+
+
+
+        docManager.addPage({
+          pageNum:  4 ,
+          fonts: [0],
+          origWidth:  902 ,
+          origHeight:  1276 ,
+          containerElem: document.getElementById("outer_page_4"),
+          blur:  true ,
+          contentUrl: "https://html.scribdassets.com/6jwzrctfb48m4x5g/pages/4-b44fac0fc5.jsonp"
+        });
+
+
+
+        docManager.addPage({
+          pageNum:  5 ,
+          fonts: [0],
+          origWidth:  902 ,
+          origHeight:  1276 ,
+          containerElem: document.getElementById("outer_page_5"),
+          blur:  true ,
+          contentUrl: "https://html.scribdassets.com/6jwzrctfb48m4x5g/pages/5-2bcb8b93fd.jsonp"
+        });
+
+
+
+        docManager.addPage({
+          pageNum:  6 ,
+          fonts: [0],
+          origWidth:  902 ,
+          origHeight:  1276 ,
+          containerElem: document.getElementById("outer_page_6"),
+          blur:  true ,
+          contentUrl: "https://html.scribdassets.com/6jwzrctfb48m4x5g/pages/6-412194fa0a.jsonp"
+        });
+
+
+
+        docManager.addPage({
+          pageNum:  7 ,
+          fonts: [0],
+          origWidth:  902 ,
+          origHeight:  1276 ,
+          containerElem: document.getElementById("outer_page_7"),
+          blur:  true ,
+          contentUrl: "https://html.scribdassets.com/6jwzrctfb48m4x5g/pages/7-4f437c52fa.jsonp"
+        });
+
+
+
+        docManager.addPage({
+          pageNum:  8 ,
+          fonts: [0],
+          origWidth:  902 ,
+          origHeight:  1276 ,
+          containerElem: document.getElementById("outer_page_8"),
+          blur:  true ,
+          contentUrl: "https://html.scribdassets.com/6jwzrctfb48m4x5g/pages/8-6a474ea938.jsonp"
+        });
+
+
+
+        docManager.addPage({
+          pageNum:  9 ,
+          fonts: [0],
+          origWidth:  902 ,
+          origHeight:  1276 ,
+          containerElem: document.getElementById("outer_page_9"),
+          blur:  true ,
+          contentUrl: "https://html.scribdassets.com/6jwzrctfb48m4x5g/pages/9-37dd142205.jsonp"
+        });
+
+
+
+        docManager.addPage({
+          pageNum:  10 ,
+          fonts: [0],
+          origWidth:  902 ,
+          origHeight:  1276 ,
+          containerElem: document.getElementById("outer_page_10"),
+          blur:  true ,
+          contentUrl: "https://html.scribdassets.com/6jwzrctfb48m4x5g/pages/10-e18e84b704.jsonp"
+        });
+
+
+
+        docManager.addPage({
+          pageNum:  11 ,
+          fonts: [0],
+          origWidth:  902 ,
+          origHeight:  1276 ,
+          containerElem: document.getElementById("outer_page_11"),
+          blur:  true ,
+          contentUrl: "https://html.scribdassets.com/6jwzrctfb48m4x5g/pages/11-9d3526b7fb.jsonp"
+        });
+
+
+
+        docManager.addPage({
+          pageNum:  12 ,
+          fonts: [0],
+          origWidth:  902 ,
+          origHeight:  1276 ,
+          containerElem: document.getElementById("outer_page_12"),
+          blur:  true ,
+          contentUrl: "https://html.scribdassets.com/6jwzrctfb48m4x5g/pages/12-79668d625b.jsonp"
+        });
+
+
+
+        docManager.addPage({
+          pageNum:  13 ,
+          fonts: [0],
+          origWidth:  902 ,
+          origHeight:  1276 ,
+          containerElem: document.getElementById("outer_page_13"),
+          blur:  true ,
+          contentUrl: "https://html.scribdassets.com/6jwzrctfb48m4x5g/pages/13-5c3a4f80e4.jsonp"
+        });
+
+
+
+        docManager.addPage({
+          pageNum:  14 ,
+          fonts: [0],
+          origWidth:  902 ,
+          origHeight:  1276 ,
+          containerElem: document.getElementById("outer_page_14"),
+          blur:  true ,
+          contentUrl: "https://html.scribdassets.com/6jwzrctfb48m4x5g/pages/14-0daedd9990.jsonp"
+        });
+
+
+
+        docManager.addPage({
+          pageNum:  15 ,
+          fonts: [0],
+          origWidth:  902 ,
+          origHeight:  1276 ,
+          containerElem: document.getElementById("outer_page_15"),
+          blur:  true ,
+          contentUrl: "https://html.scribdassets.com/6jwzrctfb48m4x5g/pages/15-b7d9750f82.jsonp"
+        });
+
+
+
+        docManager.addPage({
+          pageNum:  16 ,
+          fonts: [0],
+          origWidth:  902 ,
+          origHeight:  1276 ,
+          containerElem: document.getElementById("outer_page_16"),
+          blur:  true ,
+          contentUrl: "https://html.scribdassets.com/6jwzrctfb48m4x5g/pages/16-1b3e6fe651.jsonp"
+        });
+
+
+
+        docManager.addPage({
+          pageNum:  17 ,
+          fonts: [0],
+          origWidth:  902 ,
+          origHeight:  1276 ,
+          containerElem: document.getElementById("outer_page_17"),
+          blur:  true ,
+          contentUrl: "https://html.scribdassets.com/6jwzrctfb48m4x5g/pages/17-3014869751.jsonp"
+        });
+
+
+
+        docManager.addPage({
+          pageNum:  18 ,
+          fonts: [0],
+          origWidth:  902 ,
+          origHeight:  1276 ,
+          containerElem: document.getElementById("outer_page_18"),
+          blur:  true ,
+          contentUrl: "https://html.scribdassets.com/6jwzrctfb48m4x5g/pages/18-7a90e792ea.jsonp"
+        });
+
+
+
+        docManager.addPage({
+          pageNum:  19 ,
+          fonts: [0],
+          origWidth:  902 ,
+          origHeight:  1276 ,
+          containerElem: document.getElementById("outer_page_19"),
+          blur:  true ,
+          contentUrl: "https://html.scribdassets.com/6jwzrctfb48m4x5g/pages/19-e6d11f0158.jsonp"
+        });
+
+
+
+        docManager.addPage({
+          pageNum:  20 ,
+          fonts: [0],
+          origWidth:  902 ,
+          origHeight:  1276 ,
+          containerElem: document.getElementById("outer_page_20"),
+          blur:  true ,
+          contentUrl: "https://html.scribdassets.com/6jwzrctfb48m4x5g/pages/20-07a8fb7680.jsonp"
+        });
+
+
+
+        docManager.addPage({
+          pageNum:  21 ,
+          fonts: [0],
+          origWidth:  902 ,
+          origHeight:  1276 ,
+          containerElem: document.getElementById("outer_page_21"),
+          blur:  true ,
+          contentUrl: "https://html.scribdassets.com/6jwzrctfb48m4x5g/pages/21-adf2a9ce21.jsonp"
+        });
+
+
+
+        docManager.addPage({
+          pageNum:  22 ,
+          fonts: [0],
+          origWidth:  902 ,
+          origHeight:  1276 ,
+          containerElem: document.getElementById("outer_page_22"),
+          blur:  true ,
+          contentUrl: "https://html.scribdassets.com/6jwzrctfb48m4x5g/pages/22-5106567054.jsonp"
+        });
+
+
+
+        docManager.addPage({
+          pageNum:  23 ,
+          fonts: [0],
+          origWidth:  902 ,
+          origHeight:  1276 ,
+          containerElem: document.getElementById("outer_page_23"),
+          blur:  true ,
+          contentUrl: "https://html.scribdassets.com/6jwzrctfb48m4x5g/pages/23-ac8bcee82a.jsonp"
+        });
+
+
+
+        docManager.addPage({
+          pageNum:  24 ,
+          fonts: [0],
+          origWidth:  902 ,
+          origHeight:  1276 ,
+          containerElem: document.getElementById("outer_page_24"),
+          blur:  true ,
+          contentUrl: "https://html.scribdassets.com/6jwzrctfb48m4x5g/pages/24-381f55be6f.jsonp"
+        });
+
+
+
+        docManager.addPage({
+          pageNum:  25 ,
+          fonts: [0],
+          origWidth:  902 ,
+          origHeight:  1276 ,
+          containerElem: document.getElementById("outer_page_25"),
+          blur:  true ,
+          contentUrl: "https://html.scribdassets.com/6jwzrctfb48m4x5g/pages/25-11dfe6e83a.jsonp"
+        });
+
+
+
+        docManager.addPage({
+          pageNum:  26 ,
+          fonts: [0],
+          origWidth:  902 ,
+          origHeight:  1276 ,
+          containerElem: document.getElementById("outer_page_26"),
+          blur:  true ,
+          contentUrl: "https://html.scribdassets.com/6jwzrctfb48m4x5g/pages/26-c390f8677f.jsonp"
+        });
+
+
+
+        docManager.addPage({
+          pageNum:  27 ,
+          fonts: [0],
+          origWidth:  902 ,
+          origHeight:  1276 ,
+          containerElem: document.getElementById("outer_page_27"),
+          blur:  true ,
+          contentUrl: "https://html.scribdassets.com/6jwzrctfb48m4x5g/pages/27-08e3131293.jsonp"
+        });
+
+
+
+        docManager.addPage({
+          pageNum:  28 ,
+          fonts: [0],
+          origWidth:  902 ,
+          origHeight:  1276 ,
+          containerElem: document.getElementById("outer_page_28"),
+          blur:  true ,
+          contentUrl: "https://html.scribdassets.com/6jwzrctfb48m4x5g/pages/28-4fbe7d555a.jsonp"
+        });
+
+
+
+        docManager.addPage({
+          pageNum:  29 ,
+          fonts: [0],
+          origWidth:  902 ,
+          origHeight:  1276 ,
+          containerElem: document.getElementById("outer_page_29"),
+          blur:  true ,
+          contentUrl: "https://html.scribdassets.com/6jwzrctfb48m4x5g/pages/29-c2599bd98e.jsonp"
+        });
+
+
+
+        docManager.addPage({
+          pageNum:  30 ,
+          fonts: [0],
+          origWidth:  902 ,
+          origHeight:  1276 ,
+          containerElem: document.getElementById("outer_page_30"),
+          blur:  true ,
+          contentUrl: "https://html.scribdassets.com/6jwzrctfb48m4x5g/pages/30-56e14f063e.jsonp"
+        });
+
+
+
+        docManager.addPage({
+          pageNum:  31 ,
+          fonts: [0],
+          origWidth:  902 ,
+          origHeight:  1276 ,
+          containerElem: document.getElementById("outer_page_31"),
+          blur:  true ,
+          contentUrl: "https://html.scribdassets.com/6jwzrctfb48m4x5g/pages/31-f4652ae56c.jsonp"
+        });
+
+
+
+        docManager.addPage({
+          pageNum:  32 ,
+          fonts: [0],
+          origWidth:  902 ,
+          origHeight:  1276 ,
+          containerElem: document.getElementById("outer_page_32"),
+          blur:  true ,
+          contentUrl: "https://html.scribdassets.com/6jwzrctfb48m4x5g/pages/32-04970c072d.jsonp"
+        });
+
+
+
+        docManager.addPage({
+          pageNum:  33 ,
+          fonts: [0],
+          origWidth:  902 ,
+          origHeight:  1276 ,
+          containerElem: document.getElementById("outer_page_33"),
+          blur:  true ,
+          contentUrl: "https://html.scribdassets.com/6jwzrctfb48m4x5g/pages/33-825d9490cb.jsonp"
+        });
+
+
+
+        docManager.addPage({
+          pageNum:  34 ,
+          fonts: [0],
+          origWidth:  902 ,
+          origHeight:  1276 ,
+          containerElem: document.getElementById("outer_page_34"),
+          blur:  true ,
+          contentUrl: "https://html.scribdassets.com/6jwzrctfb48m4x5g/pages/34-33a50d368e.jsonp"
+        });
+
+
+
+        docManager.addPage({
+          pageNum:  35 ,
+          fonts: [0],
+          origWidth:  902 ,
+          origHeight:  1276 ,
+          containerElem: document.getElementById("outer_page_35"),
+          blur:  true ,
+          contentUrl: "https://html.scribdassets.com/6jwzrctfb48m4x5g/pages/35-118ef8294b.jsonp"
+        });
+
+
+
+        docManager.addPage({
+          pageNum:  36 ,
+          fonts: [0],
+          origWidth:  902 ,
+          origHeight:  1276 ,
+          containerElem: document.getElementById("outer_page_36"),
+          blur:  true ,
+          contentUrl: "https://html.scribdassets.com/6jwzrctfb48m4x5g/pages/36-bb49672c3e.jsonp"
+        });
+
+
+
+        docManager.addPage({
+          pageNum:  37 ,
+          fonts: [0],
+          origWidth:  902 ,
+          origHeight:  1276 ,
+          containerElem: document.getElementById("outer_page_37"),
+          blur:  true ,
+          contentUrl: "https://html.scribdassets.com/6jwzrctfb48m4x5g/pages/37-bdc64f2b08.jsonp"
+        });
+
+
+
+        docManager.addPage({
+          pageNum:  38 ,
+          fonts: [0],
+          origWidth:  902 ,
+          origHeight:  1276 ,
+          containerElem: document.getElementById("outer_page_38"),
+          blur:  true ,
+          contentUrl: "https://html.scribdassets.com/6jwzrctfb48m4x5g/pages/38-683f0db458.jsonp"
+        });
+
+
+
+        docManager.addPage({
+          pageNum:  39 ,
+          fonts: [0],
+          origWidth:  902 ,
+          origHeight:  1276 ,
+          containerElem: document.getElementById("outer_page_39"),
+          blur:  true ,
+          contentUrl: "https://html.scribdassets.com/6jwzrctfb48m4x5g/pages/39-ee6d317c0f.jsonp"
+        });
+
+
+
+        docManager.addPage({
+          pageNum:  40 ,
+          fonts: [0],
+          origWidth:  902 ,
+          origHeight:  1276 ,
+          containerElem: document.getElementById("outer_page_40"),
+          blur:  true ,
+          contentUrl: "https://html.scribdassets.com/6jwzrctfb48m4x5g/pages/40-22156b8945.jsonp"
+        });
+
+
+
+        docManager.addPage({
+          pageNum:  41 ,
+          fonts: [0],
+          origWidth:  902 ,
+          origHeight:  1276 ,
+          containerElem: document.getElementById("outer_page_41"),
+          blur:  true ,
+          contentUrl: "https://html.scribdassets.com/6jwzrctfb48m4x5g/pages/41-c7a2332366.jsonp"
+        });
+

@@ -1,11 +1,11 @@
-POST https://magzinesapi.azurewebsites.net/api/addMagzine HTTP/1.1
+POST https://precious-wrap-fish.cyclic.app/api/addMagzine HTTP/1.1
 Content-Type: application/json
 
 {
-  "title": "经济学人-20230513",
+  "title": "经济学人-20240113",
   "type": "TE",
-  "coverUrl": "https://newstorage007.blob.core.windows.net/tutorial-container/TE20230513.png",
-  "panUrl": "https://newstorage007.blob.core.windows.net/tutorial-container/TE20230513.pdf",
-  "datetime": "2023-05-13 10:00:00",
+  "coverUrl": "https://freemagazines.top/wp-content/uploads/2024/01/the-economist-usa-january-13-2024.webp",
+  "panUrl": "https://mbucket007.oss-cn-hangzhou.aliyuncs.com/TE20240113.pdf",
+  "datetime": "2024-01-13 10:00:00",
   "tags": "eco/politic/culture"
 }
