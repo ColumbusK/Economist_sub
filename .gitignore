@@ -1,3 +1,9 @@
+# log
+*.log
+logs/
+logfiles/
+*.outs
+
 # Python
 __pycache__/
 *.py[cod]
