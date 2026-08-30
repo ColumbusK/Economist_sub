@@ -14,12 +14,18 @@ import yagmail
 Mails = [
     {
         "mail": "zkzkao@foxmail.com",
-        "auth": "gkgrsyhlsjexcabf",
+        "auth": "svgrllusxrvxbhda",
         "smtp": "smtp.qq.com",
         "counts": 0,
     },
     {
-        "mail": "JYajcgcmNVSRj7Ab",
+        "mail": "845265098@qq.com",
+        "auth": "fzxmdsrrqgmlbaja",
+        "smtp": "smtp.qq.com",
+        "counts": 0,
+    },
+    {
+        "mail": "icesupport@126.com",
         "auth": "icesupport@126.com",
         "smtp": "smtp.126.com",
         "counts": 0,
@@ -51,7 +57,9 @@ class Poster:
         self.smtp_service = random.choice(Mails)
         if self.smtp_service["counts"] > 2:
             Mails.remove(self.smtp_service)
-        print("发件邮箱>>>:", self.smtp_service["mail"])
+        print(f"📧 选择发件邮箱: {self.smtp_service['mail']}")
+        print(f"🔧 SMTP服务器: {self.smtp_service['smtp']}")
+        print(f"📊 使用次数: {self.smtp_service['counts']}")
 
     def format_addr(self, addr: str):
         # 解析邮件地址，以保证邮有别名可以显示
@@ -60,7 +68,7 @@ class Poster:
         return formataddr(
             (
                 Header(alias_name, charset="utf-8").encode(),
-                addr.encode("uft-8") if isinstance(addr, unicode) else addr,
+                addr.encode("utf-8") if isinstance(addr, str) else addr,
             )
         )
 
@@ -107,7 +115,7 @@ class Poster:
 
     def send_html_mail(self, receiver: str, html_content: str):
         if not receiver:
-            print(f"{receiver}: 用户邮箱存在错误!")
+            print(f"❌ {receiver}: 用户邮箱存在错误!")
             return
         self.load_smtp()
         # 配置SMTP服务
@@ -115,11 +123,15 @@ class Poster:
         sender_mail = self.smtp_service["mail"]
         pwd = self.smtp_service["auth"]
 
+        print(f"📤 准备发送邮件...")
+        print(f"📧 发件人: ColumbusK <{sender_mail}>")
+        print(f"📧 收件人: {receiver}")
+        print(f"📧 主题: {self.mail_title}")
+
         # 构造邮件
         msg = MIMEMultipart("related")
         msg["Subject"] = Header(self.mail_title, "utf-8")
-        print(f"ColumbusK <{sender_mail}>".encode("utf-8"))
-        msg["From"] = Header(f"zkz <{sender_mail}>")
+        msg["From"] = Header(f"ColumbusK <{sender_mail}>", "utf-8")
         msg["To"] = receiver
         msg["date"] = get_time_stamp()
         # 添加pdf附件
@@ -153,14 +165,14 @@ class Poster:
                 )
                 smtp.quit()
         except Exception as e:
-            print(e)
+            print(f"❌ 发送异常: {e}")
             flag = False
         if flag:
-            print(receiver, "邮件发送成功 √")
+            print(f"✅ {receiver} 邮件发送成功")
         else:
             # 失败SMTP计数
             self.smtp_service["counts"] += 1
-            print(receiver, "邮件发送失败 ×")
+            print(f"❌ {receiver} 邮件发送失败")
         return flag
 
 
@@ -169,6 +181,12 @@ def batch_send(receivers: list, subject: str, contents: list, attachment_path: s
     mail_163 = "columbusknight@163.com"
     pwd_163 = "IMZSDHKHDACEZDSY"
     smtp_163 = "smtp.163.com"
+
+    print(f"📧 批量发送配置:")
+    print(f"📧 发件邮箱: {mail_163}")
+    print(f"🔧 SMTP服务器: {smtp_163}")
+    print(f"📧 收件人数量: {len(receivers)}")
+    print(f"📧 邮件主题: {subject}")
 
     # 2. 邮件内容
     mail_contents = contents
@@ -183,5 +201,5 @@ def batch_send(receivers: list, subject: str, contents: list, attachment_path: s
         contents=mail_contents,
         attachments=attachment_path,
     )
-    print(res)
-    print(">>>>>> 批量发送完成! <<<<<<")
+    print(f"📊 发送结果: {res}")
+    print("✅ 批量发送完成!")

@@ -1,42 +1,67 @@
 HTML_TEMPLATE = """
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  </style>
+  <title>经济学人订阅通知</title>
 </head>
 
-<body style="width: 100vw; height: auto; display:flex; flex-direction: column; justify-content: flex-start; align-items: center;">
-  <div style="display:flex; flex-direction: column; justify-content: flex-start; align-items: center; width: 375px; height: 980px; border: 1px solid #333; ">
-    <div style="width: 95%; height: 30%">
-      <img src="https://knightnewstands.com/magzines/magzines/TheEco_logo.png" alt="" style="width: 100%; height: 100%">
+<body style="margin: 0; padding: 20px; background-color: #f5f5f5; font-family: Arial, sans-serif;">
+  <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border: 1px solid #ddd; overflow: hidden;">
+
+    <!-- 头部Logo区域 -->
+    <div style="padding: 20px; text-align: center; background-color: #667eea;">
+      <img src="./backend/resource/TheEco_logo.png" alt="经济学人" style="max-width: 200px; height: auto; display: block; margin: 0 auto;">
     </div>
-    <div style="width: 80%; font-size:medium">
-      <p><strong style="color: #ff548c;">{{username}}</strong>，你好。 邮箱服务修复，3.3版本网站已恢复上线，新一期经济学人<strong>{{date}}</strong>刊已发布, 请查看! 享受阅读, 祝你天天好心情!</p>
-      <p><strong style="color: red;">注意：</strong>全新3.3版本的站点已上线测试，请大家点击下方红色主力网站链接前往下载。为求不被和谐外刊采取资源托管无需跳转网盘，但加载时间较长请耐心等待加载。</br>
-      如果此项目确实帮助到了您，您可以点击邮件下方的 @哥伦布骑士 前往原视频页面为我一键三连或者捐赠帮助持续运营！
-      </p>
-      <a href="https://knightmagzines.netlify.app/" style="text-decoration:none;">
-        <strong style="color: red; font-size: larger">主力站点</strong>
-      </a>
-      <a href="https://newstandshare.herokuapp.com/" style="text-decoration:none;">
-        <strong style="color: skyblue;">备用站点</strong>
-      </a>
-      <p>
-      </p>
+
+    <!-- 主要内容区域 -->
+    <div style="padding: 30px 25px;">
+      <div style="margin-bottom: 25px;">
+        <p style="font-size: 16px; line-height: 1.6; color: #333; margin-bottom: 15px;">
+          <strong style="color: #ff548c; font-size: 18px;">{{username}}</strong>，你好！
+        </p>
+        <p style="font-size: 15px; line-height: 1.6; color: #555; margin-bottom: 15px;">
+          新一期经济学人 <strong style="color: #ff548c;">{{date}}</strong> 刊已送达，请查收！
+        </p>
+        <p style="font-size: 14px; line-height: 1.5; color: #666; margin-bottom: 20px;">
+          好好学习，天天向上。享受阅读，祝你天天好心情！
+        </p>
+        <div style="background-color: #f8f9fa; padding: 15px; border-left: 4px solid #ff548c; margin-bottom: 20px;">
+          <p style="font-size: 13px; color: #666; margin: 0 0 10px 0;">
+            <strong>您的支持是我们更新最大的动力！</strong>
+          </p>
+          <p style="font-size: 13px; color: #666; margin: 0 0 10px 0;">
+            <strong>温馨提示：</strong>此邮件不会重复发送，此后请到网站下载。
+          </p>
+          <p style="font-size: 13px; color: #666; margin: 0;">
+            <strong>重要：</strong>请不要将此订阅邮件设为垃圾邮件，以免影响服务稳定性！
+          </p>
+        </div>
+        <div style="text-align: center; margin: 20px 0;">
+          <a href="https://knightmagzines.netlify.app">
+            📚 访问杂志网站
+          </a>
+        </div>
+      </div>
     </div>
-    <div style="margin-top: 10px; width: 50%">
-      <img src="https://knightnewstands.com/magzines/magzines/Bilibili_Logo.png" alt="bilibili干杯（ ゜- ゜）つロ" style="width: 100%">
-      <a href="https://www.bilibili.com/video/BV17P4y1w7wq#reply119790207136" style="text-decoration:none;">
-        <h4 style="margin-bottom: 20px; text-align: center; color: #05affe">@哥伦布骑士</h4>
+
+    <!-- 底部信息区域 -->
+    <div style="background-color: #f8f9fa; padding: 20px; text-align: center; border-top: 1px solid #e9ecef;">
+      <div style="margin-bottom: 15px;">
+        <img src="./backend/resource/Bilibili_Logo.png" alt="Bilibili" style="max-width: 80px; height: auto; display: block; margin: 0 auto 10px;">
+      </div>
+      <h4 style="font-size: 16px; color: #05affe; margin-bottom: 15px; font-weight: normal;">@哥伦布骑士</h4>
+      <a href="https://www.bilibili.com/video/BV17P4y1w7wq#reply119790207136">
+        📺 访问B站频道
       </a>
     </div>
+
   </div>
 </body>
 
 </html>
+
 """

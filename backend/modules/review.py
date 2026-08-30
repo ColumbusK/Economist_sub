@@ -22,7 +22,7 @@ class Review:
         headers = {
             "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 \
                 (KHTML, like Gecko) Chrome/100.0.4896.75 Safari/537.36",
-            "Cookie": """buvid4=F789E310-F25F-4DAA-92E1-CD7443B55C0B61835-023110315-paGIybps7qzihZ%2F%2BHTI6Cg%3D%3D; buvid_fp_plain=undefined; DedeUserID=13849597; DedeUserID__ckMd5=4237b2eb3e08a806; FEED_LIVE_VERSION=V_HEADER_LIVE_NEW_POP; buvid3=0BA7B189-8D23-8DE5-5AB3-2F94114D5F3A24682infoc; b_nut=1730550124; _uuid=3B53B10DF-9C74-D172-3945-593EA64D810DE25008infoc; rpdid=0zbfVGfY3W|1gCzJVUYL|3z|3w1TjQ7u; home_feed_column=5; browser_resolution=1536-791; LIVE_BUVID=AUTO6717390730107243; PVID=1; is-2022-channel=1; enable_feed_channel=ENABLE; CURRENT_QUALITY=112; SESSDATA=5b65dacb%2C1757647234%2Cd7230%2A32CjBR99QLFGwrWpdK6IYSrkH2dVQNjw6P11MVdJJA3Ck-hxLNeh67bhTWwOg2RUN0yWcSVm94dGlEQk5aUGtWNV91M2hyUWhadEVjck5ER2ROZTlUSExtMGlsTFdYQmQ0MHZ4Qnp4SmhVZFBoaUlTb0RqQkt2dG5RejA2ZFFrcHhfMjVwQmlpdFFnIIEC; bili_jct=fd29a3e664fd86900117356b15e3f523; fingerprint=26cafb97e6e3eac0fbb640cf53888cfb; buvid_fp=abdddcdf807444b075a343cf7e25c6b4; bp_t_offset_13849597=1045238110331338752; CURRENT_FNVAL=4048; bili_ticket=eyJhbGciOiJIUzI1NiIsImtpZCI6InMwMyIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NDI0NzgwMTAsImlhdCI6MTc0MjIxODc1MCwicGx0IjotMX0.I0mir-FyuyiysQMUSWaLgwZdQwC2UkFuYMbX48I8kM0; bili_ticket_expires=1742477950; b_lsid=A522399A_195A8DF33CC; bsource=search_google""",
+            "Cookie": """buvid3=45DA44CD-7863-739C-CBC2-9874275F4C3A35069infoc; b_nut=1754209035; _uuid=D762D101010-1CB8-D211-3147-33B76739CB10A34888infoc; buvid_fp=74c7ffa784115d9eadeb5d80e76eaeb0; enable_web_push=DISABLE; theme-tip-show=SHOWED; rpdid=|(umkmklulk)0J'u~lRk|mukR; theme-avatar-tip-show=SHOWED; theme-switch-show=SHOWED; buvid4=8EB4E2AC-44E3-20FD-3AF6-49E32F5C973F16425-025072010-o8oAp5IH2+wn/SteH4wkt3og8qx2WUm5hc4tCNz3+pFYJZiuQZ6TEXNAGSTMSx5E; LIVE_BUVID=AUTO2217616487358869; home_feed_column=5; DedeUserID=13849597; DedeUserID__ckMd5=4237b2eb3e08a806; CURRENT_QUALITY=100; PVID=1; browser_resolution=1536-791; bili_ticket=eyJhbGciOiJIUzI1NiIsImtpZCI6InMwMyIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NzQxNzY1MjksImlhdCI6MTc3MzkxNzI2OSwicGx0IjotMX0.hOvBylab8KnIt37e43vSC9gBVxr_LwPFbIOzCKgXUzE; bili_ticket_expires=1774176469; SESSDATA=60348013%2C1789469331%2C10a82%2A32CjDxe9tCcw5M-Pnnq-Ic6StGc79eOaIoJHAalyklPHXRR08Ss6lqoQ8LKDxbj7Y6WfUSVjFWcWt6bjJJcHB1U2FkWnN6cGowMVNoWDdHbXNIOE00dU9ua1pCRFRqeFNwY2JMMFFzSUlvRWxlWTF6YUpGVTczQ3BfS3hQNDVYTGpsd2UzZnNFQkJnIIEC; bili_jct=cc80eef6d0f229a6910e561b0c3fe033; sid=5zbecedx; bp_t_offset_13849597=1182446952340520960; CURRENT_FNVAL=4048; b_lsid=BF3C28AB_19D14953C91""",
         }
         try:
             time.sleep(random.random() * 7)
@@ -37,7 +37,7 @@ class Review:
     def get_reviews(self):
         all_review = list()
         pn = 1
-        while pn <= 1:
+        while pn <= 3:
             try:
                 replies = self.get_page(pn=pn)["data"]["replies"]
                 # print(replies)
